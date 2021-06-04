@@ -3,6 +3,7 @@
 const std = @import("std");
 const terminal = @import("terminal.zig");
 const x86 = @import("arch_x86.zig");
+const gdt = @import("gdt.zig");
 
 const MultiBoot = packed struct {
     magic: i32,
@@ -46,6 +47,9 @@ fn kmain() void {
     terminal.write("Booting kernel, built with Zig version ");
     terminal.write(std.fmt.comptimePrint("{}", .{std.builtin.zig_version}));
     terminal.write("\n");
+
+    terminal.write("Initializing the GDT\n");
+    gdt.load();
 
     x86.halt();
 }
