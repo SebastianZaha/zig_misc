@@ -14,6 +14,9 @@ pub fn build(b: *Builder) void {
     });
     exe.setLinkerScriptPath("src/linker.ld");
     exe.setOutputDir(b.cache_root);
+    
+    exe.addAssemblyFile("src/interrupts.s");
+
     exe.install();
 
 

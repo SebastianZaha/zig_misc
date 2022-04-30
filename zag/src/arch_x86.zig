@@ -55,3 +55,14 @@ pub inline fn outb(port: u16, value: u8) void {
     asm volatile ("outb %[value], %[port]" : : [value] "{al}" (value),
                                                [port]  "N{dx}" (port));
 }
+
+////
+// Load a new Interrupt Descriptor Table.
+//
+// Arguments:
+//     idtr: Address of the IDTR register.
+//
+pub inline fn lidt(idtr: usize) void {
+    asm volatile ("lidt (%[idtr])" : : [idtr] "r" (idtr));
+}
+
