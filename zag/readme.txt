@@ -1,4 +1,4 @@
-
+Playing around with bare bones OSdev concepts
 
 zig build qemu
 
