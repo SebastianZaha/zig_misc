@@ -15,12 +15,12 @@ pub fn checkMax(max: []usize, current: usize) void {
 
 pub fn main() !void {
 	var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    const allocator = gpa.allocator();
+	const allocator = gpa.allocator();
 	defer {
 		const leaked = gpa.deinit();
 		if (leaked) @panic("mem leak");
 	}
-    
+
 	const example = try std.fs.cwd().readFileAlloc(allocator, "1_input.txt", 10*1024*1024);
 	defer allocator.free(example);
 
@@ -40,5 +40,5 @@ pub fn main() !void {
 	}
 	checkMax(&max, current);
 
-    try stdout.print("max: {}+{}+{} = {}!\n", .{max[0], max[1], max[2], max[0]+max[1]+max[2]});
+	try stdout.print("max: {}+{}+{} = {}!\n", .{max[0], max[1], max[2], max[0]+max[1]+max[2]});
 }
